@@ -108,6 +108,7 @@ git的使用
         git checkout index-swiper切换分支
         合并
         git checkout master
+        git merge index-swiper
 #首页轮播图
 git创建分支branch
     点击branch创建index-swiper分支
