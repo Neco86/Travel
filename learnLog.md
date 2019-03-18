@@ -124,3 +124,11 @@ git里查找vue-awesome-swiper
 推到github上
 git checkout master切换到master分支
 git merge  origin/index-swiper合并
+
+git branch -a查看所有branch
+git checkout xxx切换
+
+git clone xxx
+npm install
+npm run start
+#
