@@ -98,10 +98,16 @@ iconfont.js及demo文件不用
  @import '~styles/varibles.styl'
 重启npm run start
 
-git的使用 git add .添加到本地仓库
-         git commit -m ''添加描述
-         git push   推到github
-
+git的使用 
+        上传
+        git add .添加到本地仓库
+        git commit -m ''添加描述
+        git push   推到github
+        转换分支
+        git pull
+        git checkout index-swiper切换分支
+        合并
+        git checkout master
 #首页轮播图
 git创建分支branch
     点击branch创建index-swiper分支
