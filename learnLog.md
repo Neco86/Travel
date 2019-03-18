@@ -124,3 +124,7 @@ git里查找vue-awesome-swiper
 推到github上
 git checkout master切换到master分支
 git merge  origin/index-swiper合并
+
+
+添加border-bottom的class即添加一像素边框
+子元素不显示...,父元素添加min-width: 0
