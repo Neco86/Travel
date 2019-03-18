@@ -77,7 +77,7 @@ components:{
 }
 <home-header></home-header>
 *Header.vue添加*
-<style lang="stylus" scoped>
+<style lang="stylus" scoped></style>
 使用stylus,使用scoped确保不影响其他
 reset中html的font-size为50px,则1rem相对与50px
 如果尺寸图为2倍图,则量的100px,转化为正常50px,即1rem
@@ -124,11 +124,3 @@ git里查找vue-awesome-swiper
 推到github上
 git checkout master切换到master分支
 git merge  origin/index-swiper合并
-
-git branch -a查看所有branch
-git checkout xxx切换
-
-git clone xxx
-npm install
-npm run start
-#
