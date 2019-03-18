@@ -1,6 +1,6 @@
 <template>
     <div class="icons">
-        <swiper>
+        <swiper :options="swiperOption">
             <swiper-slide  v-for='(page,index) of pages' :key='index'>
                 <div class="icon"  v-for='item of page' :key='item.id'>
                     <div class="icon-img">
@@ -58,7 +58,10 @@ export default{
         id: '0010',
         imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png',
         desc: '动植物园'
-      }]
+      }],
+      swiperOption: {
+        disableOnInteraction: false,
+      }
     }
   },
   computed: {
