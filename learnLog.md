@@ -124,4 +124,3 @@ git里查找vue-awesome-swiper
 推到github上
 git checkout master切换到master分支
 git merge  origin/index-swiper合并
-#图标区域页面布局
