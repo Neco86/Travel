@@ -97,3 +97,30 @@ iconfont.js及demo文件不用
  'styles' :resolve('src/assets/styles'),
  @import '~styles/varibles.styl'
 重启npm run start
+
+git的使用 git add .添加到本地仓库
+         git commit -m ''添加描述
+         git push   推到github
+
+#首页轮播图
+git创建分支branch
+    点击branch创建index-swiper分支
+    git pull
+    git checkout index-swiper切换分支
+    git status查看情况
+git里查找vue-awesome-swiper
+<style lang="stylus" scoped>
+    .wrapper
+        width: 100%
+        height: 0
+        overflow: hidden
+        padding-bottom: 31.25%//宽高比
+        .swiper-img
+            width: 100%
+</style>
+轮播图中点改颜色
+.wrapper >>> .swiper-pagination-bullet-active
+因为写了scoped无法修改,所以用>>>来穿透
+推到github上
+git checkout master切换到master分支
+git merge  origin/index-swiper合并

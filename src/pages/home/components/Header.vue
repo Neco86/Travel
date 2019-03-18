@@ -47,4 +47,5 @@ export default{
             text-align:center
             .arrow-icon
                 font-size:.24rem
+                margin-left: .04rem
 </style>
