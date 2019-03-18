@@ -2,7 +2,7 @@
     <div>
         <div class="recommend-title">热门推荐</div>
         <ul>
-            <li class="item border-bottom" v-for='item of recommendList' :key='item.id'>
+            <li class="item border-bottom" v-for='item of list' :key='item.id'>
                 <img class="item-img" :src="item.imgUrl">
                  <div class="item-info">
                     <p class="item-title">{{item.title}}</p>
@@ -17,25 +17,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [{
-        id: '0001',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg',
-        title: '故宫',
-        desc: '世界五大宫之首，穿越与您近在咫尺'
-      }, {
-        id: '0002',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1602/68/68aa05adb5315f9990.water.jpg_200x200_ce3d2658.jpg',
-        title: '北京海洋馆',
-        desc: '奇幻海洋之旅，在帝都感受大海的魅力'
-      }, {
-        id: '0003',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1507/36/ce3d2d6c9ab44d67ae68d940b8781829.water.jpg_200x200_0938a8f2.jpg',
-        title: '北京野生动物园',
-        desc: '敢与森林之王近距离接触吗？'
-      }]
-    }
+  props: {
+    list: Array
   }
 }
 </script>

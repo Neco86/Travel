@@ -135,3 +135,69 @@ git merge  origin/index-swiper合并
 
 添加border-bottom的class即添加一像素边框
 子元素不显示...,父元素添加min-width: 0
+
+#Ajax获取首页数据
+使用axios
+sudo npm install axios --save
+在Home.vue里添加
+import axios from 'axios'
+mounted () {
+    this.getHomeInfo()
+  }
+}
+methods: {
+    getHomeInfo: function () {
+        axios.get('/api/index.json').then(this.getHomeInfoSucc)
+    },
+    getHomeInfoSucc: function (res) {
+      console.log(res)
+    }
+添加文件
+static/mock/index,json
+网页只可以访问到static目录下文件
+此为模拟数据,不希望上传
+.gitignore里添加
+static/mock
+
+修改config/index.js
+实现/api/index.json => /static/mock/index.js
+proxyTable: {
+        '/api': {
+            target: 'http://localhost:8080',
+            pathRewrite: {
+                '^/api': '/static/mock'
+            }
+        }
+    }
+#首页父子组件数据传递
+绑定数据
+在Home.Vue添加
+data () {
+    return {
+        city: ''
+    }
+  }
+<home-header :city='city'></home-header>
+在Header.vue添加
+props: {
+    city: String
+  }
+Home.vue修改
+getHomeInfoSucc: function (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.city = data.city
+      }
+      console.log(res)
+    }
+  }
+轮播图中点为最后一个,因为最开始获取的数据为空
+添加
+v-if='showSwiper'
+computed: {
+    showSwiper () {
+      this.list.length
+    }
+  }
+解决
