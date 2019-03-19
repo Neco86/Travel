@@ -236,3 +236,25 @@ export default {
 better-wrapper的github上说明wrapper下只有一个子元素可以滑动
 
 v-for='(item,key) of cities循环对象时,第二个为key
+
+alphabet.vue
+methods: {
+    handleLeterClick: function (e) {
+      console.log(e.target.innerText)
+    }
+把alphabet里的值传给List
+在list.vue里
+ <div class="area" v-for='(item,key) of cities' :key='key' :ref='key'>
+ watch: {
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
+  }
+
+在Alphabet里添加滚动变化
+@touchstart='handleTouchStart'
+@touchmove='handleTouchMove'
+@touchend='handleTouchEnd'
