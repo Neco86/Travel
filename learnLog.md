@@ -13,7 +13,7 @@ static              静态资源,图片,json数据等---------------------------
 node_modules        依赖的包  
 src                 项目源代码
     *main.js         项目入口文件②*----------------------------------------*main.js引轮播图,引css,引字体css等*
-    *App.vue         根组件,单文件组件,名字为App的组件③*
+    *App.vue         根组件,单文件组件,名字为App的组件③*----------------------*keepalive优化,减少ajax请求*
     *router/index.js 路由文件④*-------------------------------------------*多页面使用*
     components      组件
         *HelloWorld.vue⑤*-------------------------------------------------*即pages/x/x.vue 每个页面组件 及页面子组件*
@@ -413,3 +413,37 @@ import { mapGetters } from 'vuex'
 
 #关于Module
 将代码按照模块拆分
+
+#keepalive优化
+chrome/Network/xhs可以查看json请求次数
+切换页面时,请求json,再切换.再次请求一样的json,由于每次页面的mounted重复执行
+修改App.vue
+<template>
+  <div id="app">
+    <keep-alive>
+        <router-view/> 
+    </keep-alive>
+  </div>
+</template>
+修改城市时,应该重新获取ajax请求
+在home.vue修改
+import { mapState } from 'vuex'
+axios.get('/api/index.json?city' + this.city).then(this.getHomeInfoSucc)
+computed: {
+    ...mapState(['city'])
+  },
+在chrome/Network/xhs/index.json/headers能找到city北京,此时点击按钮,不会重新发ajax请求
+使用keepalive会多出来个生命周期函数activated
+此时mounted不会重复执行
+但是activated会重复执行(页面被重新显示的时候被执行)
+lastCity: ''
+mounted () {
+    this.getHomeInfo()
+    this.lastCity = this.city
+  }
+activated () {
+if (this.lastCity !== this.city) {
+  this.lastCity = this.city
+  this.getHomeInfo()
+}
+}
