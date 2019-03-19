@@ -115,7 +115,7 @@ git创建分支branch
     git pull
     git checkout index-swiper切换分支
     git status查看情况
-git里查找vue-awesome-swiper
+git里查找vue-awesome-swiper(使用旧版的)
 <style lang="stylus" scoped>
     .wrapper
         width: 100%
@@ -258,3 +258,158 @@ methods: {
 @touchstart='handleTouchStart'
 @touchmove='handleTouchMove'
 @touchend='handleTouchEnd'
+
+#使用Vuex实现数据共享
+City.vue与Home.vue数据通信
+Bus比较麻烦
+使用Vuex
+https://vuex.vuejs.org/vuex.png
+State存放公用数据
+
+改变数据:State => Vue Components =(Dispatch)=> Actions =(Commit)=> Mutations
+
+npm install vuex --save
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+由于写的Vuex文件较多,不放在main.js下,创建src/store/index.js,然后在main.js里import,记得vue创建实例时,添加store
+export default new Vuex.Store({
+    states: {
+        city: '北京'
+    }
+})
+this.city修改为this.$store.states.city
+#在相应vue派发
+methods: {
+    handleCityClick (city) {
+        this.$store.dispatch('changeCity',city)
+    }
+  }
+#在index.js下写actions
+export default new Vuex.Store({
+  state: {
+    city: '北京'
+  },
+  actions: {
+    changeCity (ctx, city) { // ctx为上下文
+      ctx.commit('changeCity', city)
+    }
+  },
+  mutations: {
+    changeCity (state, city) {
+      state.city = city
+    }
+  }
+})
+可以跳过acitions
+methods: {
+    handleCityClick (city) {
+      this.$store.commit('changeCity', city)
+    }
+  }
+export default new Vuex.Store({
+  state: {
+    city: '北京'
+  },
+  mutations: {
+    changeCity (state, city) {
+      state.city = city
+    }
+  }
+})
+
+点击城市返回主页
+vue官网-生态系统-vue router-编程式导航
+methods: {
+    handleCityClick (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
+    }
+  }
+
+#vuex的高级使用及localStorage
+刷新后选择的城市不变
+export default new Vuex.Store({
+  state: {
+    city: localStorage.city || '北京'
+  },
+  mutations: {
+    changeCity (state, city) {
+      state.city = city
+      localStorage.city = city
+    }
+  }
+})
+使用localStorage建议使用try catch
+let defaultCity = '北京'
+try {
+    if (localStorage.city) {
+        defaultCity =  localStorage.city = city
+    }
+} catch (e) {}
+export default new Vuex.Store({
+  state: {
+    city: defaultCity
+  },
+  mutations: {
+    changeCity (state, city) {
+      state.city = city
+      try {
+        localStorage.city = city
+      } catch (e) {}
+    }
+  }
+})
+把state和mutation提取出来分别创建js
+城市名称过长,布局错误修复
+width改为min-width: 1.04rem
+
+优化this.$store.state.city过长
+#关于mapState
+this.city
+<script>
+import { mapState } from 'vuex'
+export default{
+  computed: {
+    ...mapState(['city'])
+  }
+}
+</script>
+另一种写法
+<script>
+import { mapState } from 'vuex'
+this.currentCity
+ computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
+  }
+</script>
+Mutations优化
+#关于mapMutations
+import { mapState, mapMutations } from 'vuex'
+ methods: {
+    handleCityClick (city) {
+      // this.$store.commit('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  }
+#关于mapGetters 
+(类似与compued的作用)
+export default new Vuex.Store({
+  getters: {
+    doubleCity (state) {
+        return state.city + ' ' + state.city
+        }
+    }
+}
+ computed: {
+    ...mapGetters(['doubleCity'])
+  }
+import { mapGetters } from 'vuex'
+{{this.doubleCity}}
+
+#关于Module
+将代码按照模块拆分
