@@ -9,17 +9,17 @@ package-lock.json   第三方包的版本
 .eslintignore       不被检测代码规范的文件
 .editorconfig       编辑器代码格式
 .babelrc            语法转换,使浏览器能够懂
-static              静态资源,图片,json数据等
+static              静态资源,图片,json数据等--------------------------------*存放模拟json数据*
 node_modules        依赖的包  
 src                 项目源代码
-    *main.js         项目入口文件②*
+    *main.js         项目入口文件②*----------------------------------------*main.js引轮播图,引css,引字体css等*
     *App.vue         根组件,单文件组件,名字为App的组件③*
-    *router/index.js 路由文件④*
+    *router/index.js 路由文件④*-------------------------------------------*多页面使用*
     components      组件
-        *HelloWorld.vue⑤*
-    assets          项目资源
+        *HelloWorld.vue⑤*-------------------------------------------------*即pages/x/x.vue 每个页面组件 及页面子组件*
+    assets          项目资源------------------------------------------------*存放iconfont,x.styl*
 config              项目配置信息
-    index.js        基础配置信息,写明路由指向的组件文件
+    index.js        基础配置信息,写明路由指向的组件文件-------------------------*修改模拟json数据位置*
     dev.env.js      开发环境配置信息
     prod.env.js     线上开发环境配置信息
 build               打包配置内容
@@ -40,7 +40,7 @@ new Vue({
 })
 *index.html(#app)----->main.js(el:'#app' template: '<App/>'入口文件)----->App.vue(根组件)中的路由标签(<router-view/>)----->index.js(配置信息,@指src目录)------>xxx.vue(子组件)*
 *同一个页面编写时,创建子组件vue,然后引入注册和使用*
-*main.js引vue,引css,引字体css等*
+*main.js引轮播图,引css,引字体css等*
 #多页应用vs单页应用
 多页应用                                                    单页应用(使用vue的为单页应用)
 页面跳转->返回新的HTML                                        页面跳转->JS渲染
@@ -201,3 +201,13 @@ computed: {
     }
   }
 解决
+#城市选择页面路由配置
+router/index.js添加
+{
+      path: '/city',
+      name: 'City',
+      component: City
+    }
+import City from '@/pages/city/City'
+<router-link to='/city'></router-link>
+router-link会把颜色改为绿色
