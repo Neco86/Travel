@@ -16,6 +16,7 @@ export default {
      height: .72rem
      background: $bgcolor
      padding: 0 .1rem
+     padding-bottom: 0.01rem
      margin-top: -0.02rem
      .search-input
          height: .62rem
@@ -26,5 +27,5 @@ export default {
          color: #666
          box-sizing: border-box
          padding: 0 .1rem
-         margin-top: .05rem
+         margin-top: .025rem
 </style>

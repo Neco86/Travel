@@ -211,3 +211,26 @@ router/index.js添加
 import City from '@/pages/city/City'
 <router-link to='/city'></router-link>
 router-link会把颜色改为绿色
+
+改一像素边框
+.border-topbottom
+     &:before
+         border-color: #ccc
+     &:after
+         border-color: #ccc
+#city-list
+超出部分不要实现滚动,overflow:hidden
+使用Better-scroll插件
+github查找Better-sroll
+npm install Better-scroll --save
+
+ref标签属性,可以获取dom
+<div class="list" ref="wrapper">
+import Bscroll from 'better-scroll'
+export default {
+  name: 'CityList',
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.wrapper)
+  }
+}
+better-wrapper的github上说明wrapper下只有一个子元素可以滑动
