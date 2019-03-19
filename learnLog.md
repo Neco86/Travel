@@ -234,3 +234,5 @@ export default {
   }
 }
 better-wrapper的github上说明wrapper下只有一个子元素可以滑动
+
+v-for='(item,key) of cities循环对象时,第二个为key
