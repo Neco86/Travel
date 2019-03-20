@@ -447,3 +447,22 @@ if (this.lastCity !== this.city) {
   this.getHomeInfo()
 }
 }
+#详情页面动态路由及banner布局
+<router-link :to='./detail/ +"item.id"'><li></li></router-link>
+颜色修复方法
+</router-link>
+index.js添加路由
+{
+    path: '/detail/:id',//传的值给id
+    name: 'Detail',
+    component: Detail
+  }
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0),rgba(0, 0, 0, .8))渐变色
+#公共图片画廊组件拆分
+创建 src/common/gallery/Gallery.vue
+创建common目录简写
+swiperOption的选项
+https://3.swiper.com.cn/plus/search.php?kwtype=0&q=pagination
+修复轮播图0/0
+observeParents: true,
+observer: true
