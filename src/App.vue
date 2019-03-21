@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <keep-alive exclude='Detail'>
-        <router-view/>
-    </keep-alive>
+    <!-- <keep-alive exclude="Detail"> -->
+      <router-view/>
+    <!-- </keep-alive> -->
   </div>
 </template>
 
@@ -12,6 +12,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

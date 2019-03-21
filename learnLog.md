@@ -490,8 +490,8 @@ handleScroll () {
 windows.addEventListen添加到了全局,
 返回主页面也会有事件监听
 所以需要解绑
-keep-alive的使用会多生命周期函数activated还有deactivated
-在deactivated里取消监听即可
+keepalive的使用会多生命周期函数mounted还有unmounted
+在unmounted里取消监听即可
     window.removeEventListener('scroll', this.handleScroll)
 #使用递归组件实现详情页列表
 子组件中name的作用是使用递归组件
