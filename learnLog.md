@@ -532,3 +532,9 @@ name作用总结
 
 修复首页拖动到某一位置,其他页面也会被拖到相应位置
 官网vue/vue-router/滚动行为
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
+#创建动画
+common下创建fade/Fade.vue
+内容详见learnLog3.txt
