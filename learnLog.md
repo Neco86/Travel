@@ -499,3 +499,36 @@ keep-alive的使用会多生命周期函数activated还有deactivated
     <detail-list :list='item.children'></detail-list>
 </div>
 可以一直递归到完 
+#detail页面ajax请求
+getDetailInfo: function () {
+      axios.get('/api/detail.json?id=' + this.$route.params.id).then(this.getDetailInfoSucc)
+    },
+或
+ getDetailInfo: function () {
+      axios.get('/api/detail.json?id=', {
+        params: {
+            id: this.$route.params.id
+        }
+      }).then(this.getDetailInfoSucc)
+    }
+props里判断类型
+换页时由于keeplive不会重新请求
+可以用activated修复
+或
+在App.vue里修改
+<template>
+  <div id="app">
+    <keep-alive exclude='Detail'>
+        <router-view/>
+    </keep-alive>
+  </div>
+</template>
+这样Detail不会被缓存
+
+name作用总结
+1.递归组件使用
+2.不让组件缓存时使用
+3.Vue的开发工具里组件名的来源
+
+修复首页拖动到某一位置,其他页面也会被拖到相应位置
+官网vue/vue-router/滚动行为
