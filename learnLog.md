@@ -466,3 +466,23 @@ https://3.swiper.com.cn/plus/search.php?kwtype=0&q=pagination
 修复轮播图0/0
 observeParents: true,
 observer: true
+
+#header渐隐渐现的效果
+<div class="content"></div>
+.content
+height: 50rem//页面较长,用于撑开页面,以便调试
+监听window.onscroll
+    window.addEventListener('scroll',this.handleScroll)
+console.log(document.documentElement.scrollTop)
+:style='opacityStyle'
+handleScroll () {
+      const top = document.documentElement.scrollTop
+      if (top > 60) { // 60-140渐隐渐现
+        let opacity = top / 140
+        opacity = opacity > 1 ?  1: opacity
+        this.opacityStyle = { opacity }
+        this.showAbs = false
+      } else {
+        this.showAbs = true
+      }
+    }
