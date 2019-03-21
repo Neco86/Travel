@@ -72,6 +72,7 @@ export default{
          color: #fff
          background-color: $bgcolor
          font-size: .32rem
+         z-index: 2
          .header-fixed-back
              position: absolute
              width: .64rem

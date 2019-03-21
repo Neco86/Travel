@@ -493,3 +493,9 @@ windows.addEventListen添加到了全局,
 keep-alive的使用会多生命周期函数activated还有deactivated
 在deactivated里取消监听即可
     window.removeEventListener('scroll', this.handleScroll)
+#使用递归组件实现详情页列表
+子组件中name的作用是使用递归组件
+<div v-if='item.children'>
+    <detail-list :list='item.children'></detail-list>
+</div>
+可以一直递归到完 
