@@ -486,3 +486,10 @@ handleScroll () {
         this.showAbs = true
       }
     }
+#全局事件解绑
+windows.addEventListen添加到了全局,
+返回主页面也会有事件监听
+所以需要解绑
+keep-alive的使用会多生命周期函数activated还有deactivated
+在deactivated里取消监听即可
+    window.removeEventListener('scroll', this.handleScroll)
