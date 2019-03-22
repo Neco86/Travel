@@ -44,8 +44,8 @@ export default {
   },
   activated () {
     if (this.scroll) {
-        this.scroll.refresh() 
-    } 
+      this.scroll.refresh()
+    }
   },
   methods: {
     handleCityClick (city) {
