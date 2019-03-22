@@ -33,7 +33,19 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    const options = {
+      scrollY: true,
+      scrollX: false,
+      mouseWheel: true,
+      click: true,
+      taps: true
+    }
+    this.scroll = new Bscroll(this.$refs.wrapper, options)
+  },
+  activated () {
+    if (this.scroll) {
+        this.scroll.refresh() 
+    } 
   },
   methods: {
     handleCityClick (city) {
